@@ -5,9 +5,9 @@
 	<div class="container padTop">
 		<div class="row">
 			<div class="col">
-				<h1>Login</h1>
+				<h1>Register</h1>
 			</div>
-		</div>
+			</div>
 		<div class="row">
 			<div class="col">
 				<input
@@ -20,8 +20,9 @@
 				name="password"
 				placeholder="password"
 				/>
-				<div class="error" v-html="error"/><br>
-				<button>Login</button>
+				<div class="error padTop"><br>
+				<div class="success"><br>
+				<button>Register</button>
 			</div>
 		</div>
   </div>
