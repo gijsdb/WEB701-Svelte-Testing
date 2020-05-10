@@ -1,4 +1,16 @@
 <script>
+ import { userStore } from '../Store/index.js'
+
+  let email = ""
+  let password = ""
+  let isLoggedIn = false
+  function handleSubmit() {
+	
+	$userStore = { email, password, isLoggedIn } // simulate login
+	console.log($userStore)
+	console.log("hello")
+  }
+
 </script>
 
 <main>
@@ -10,18 +22,22 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<input
-				type="text"
-				name="email"
-				placeholder="email"
-				/>
-				<input
-				type="password"
-				name="password"
-				placeholder="password"
-				/>
-				<div class="error" v-html="error"/><br>
-				<button>Login</button>
+				<form on:submit|preventDefault={handleSubmit}>
+					<input
+					type="text"
+					name="email"
+					placeholder="email"
+					bind:value={email}
+					/>
+					<input
+					type="password"
+					name="password"
+					placeholder="password"
+					bind:value={password}
+					/>
+					<div class="error" v-html="error"/><br>
+					<button>Login</button>
+				</form>
 			</div>
 		</div>
   </div>
