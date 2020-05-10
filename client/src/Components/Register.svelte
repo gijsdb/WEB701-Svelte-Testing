@@ -1,4 +1,30 @@
 <script>
+ import { userStore } from '../Store/index.js'
+ import axios from 'axios'
+
+  let email = ""
+  let password = ""
+  let isLoggedIn = false
+  let user = null
+  let token = null
+
+  async function register () {
+      try {
+		const response = await axios.post(`http://localhost:8091/register`, { email, password })
+		console.log(response)
+		token = response.data.token,
+		user = response.data.user,
+		isLoggedIn = true 
+		$userStore = {
+			token,
+			user,
+			isLoggedIn
+		}
+     } catch (error) {
+		console.log(response.data.error)
+     }
+  }
+
 </script>
 
 <main>
@@ -10,19 +36,23 @@
 			</div>
 		<div class="row">
 			<div class="col">
-				<input
+			  <form on:submit|preventDefault={register}>
+			 	<input
 				type="text"
 				name="email"
 				placeholder="email"
+				bind:value={email}
 				/>
 				<input
 				type="password"
 				name="password"
 				placeholder="password"
+				bind:value={password}
 				/>
 				<div class="error padTop"><br>
 				<div class="success"><br>
 				<button>Register</button>
+			  </form>
 			</div>
 		</div>
   </div>

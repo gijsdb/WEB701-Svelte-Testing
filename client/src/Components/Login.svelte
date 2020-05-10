@@ -1,14 +1,33 @@
 <script>
  import { userStore } from '../Store/index.js'
+ import axios from 'axios'
 
   let email = ""
   let password = ""
   let isLoggedIn = false
+  let user = null
+  let token = null
+
   function handleSubmit() {
 	
-	$userStore = { email, password, isLoggedIn } // simulate login
-	console.log($userStore)
-	console.log("hello")
+
+  }
+
+  async function login () {
+      try {
+		const response = await axios.post(`http://localhost:8091/login`, { email, password })
+		console.log(response)
+		token = response.data.token,
+		user = response.data.user,
+		isLoggedIn = true 
+		$userStore = {
+			token,
+			user,
+			isLoggedIn
+		}
+     } catch (error) {
+		console.log(response.data.error)
+     }
   }
 
 </script>
@@ -22,7 +41,7 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<form on:submit|preventDefault={handleSubmit}>
+				<form on:submit|preventDefault={login}>
 					<input
 					type="text"
 					name="email"
